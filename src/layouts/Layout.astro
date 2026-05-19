@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
     <title>GC Abogados</title>
     <meta
       name="description"
@@ -21,8 +27,16 @@
     <meta name="yandexbot" content="index, follow" />
   </head>
   <body>
-    <div id="background-mask" class="min-h-screen w-full">
-      <slot />
+    <div
+      class="relative min-h-screen bg-cover bg-center bg-no-repeat bg-[url('/spain-1.jpg')]"
+    >
+      <div
+        class="hero-overlay absolute inset-0 z-0 bg-linear-to-b from-white/95 via-white/89 to-transparent"
+      >
+      </div>
+      <div class="relative z-10 flex items-center justify-center min-h-screen">
+        <slot />
+      </div>
     </div>
   </body>
 </html>
@@ -30,18 +44,30 @@
 <style is:global>
   @import "tailwindcss";
   @import "tailwind-animations";
-+ @plugin "@tailwindcss/typography";
-  html,
+  html {
+    font-family: var(--font-sans);
+  }
+  ,
+  h2 {
+    line-height: 1;
+    font-kerning: normal;
+    font-variant-ligatures: none;
+  }
   body {
     margin: 0;
     width: 100%;
     height: 100%;
-  }
-
-  #background-mask {
-    background-image: url("/madrid-2.jpg");
-    background-size: cover;
-    background-position: top;
-    background-repeat: no-repeat;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      "Open Sans",
+      "Helvetica Neue",
+      sans-serif;
   }
 </style>
