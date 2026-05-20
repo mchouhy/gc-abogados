@@ -37,6 +37,10 @@
     <meta name="googlebot" content="index, follow" />
     <meta name="bingbot" content="index, follow" />
     <meta name="yandexbot" content="index, follow" />
+    <script
+      is:inline
+      src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"
+    ></script>
   </head>
   <body>
     <slot />
@@ -46,10 +50,11 @@
 <style is:global>
   @import "tailwindcss";
   @import "tailwind-animations";
-  html {
-    font-family: var(--font-open-sans);
+
+  * {
+    font-family: var(--font-inter);
+    /* outline: red solid 1px; */
   }
-  ,
   h2 {
     line-height: 1;
     font-kerning: normal;
