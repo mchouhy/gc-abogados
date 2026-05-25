@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource-variable/hubot-sans": "^5.2.8",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.3.3",
     "flowbite": "^4.0.2",
