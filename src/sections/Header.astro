@@ -3,10 +3,10 @@ import Logo from "../components/Logo.astro";
 ---
 
 <nav
-  class="bg-neutral-primary fixed w-full z-20 top-0 inset-s-0 border-b border-default"
+  class="fixed inset-s-0 top-0 z-20 w-full border-b border-default bg-neutral-primary"
 >
   <div
-    class="flex flex-wrap justify-between items-center mx-auto max-w-6xl p-4"
+    class="mx-auto flex max-w-6xl flex-wrap items-center justify-between p-2"
   >
     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
       <!-- <img
@@ -22,13 +22,13 @@ import Logo from "../components/Logo.astro";
     <button
       data-collapse-toggle="mega-menu-full"
       type="button"
-      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-primary rounded-lg md:hidden hover:bg-neutral-secondary-soft hover:text-primary focus:outline-none focus:ring-2 focus:ring-default"
+      class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-primary hover:bg-neutral-secondary-soft hover:text-primary focus:ring-2 focus:ring-default focus:outline-none md:hidden"
       aria-controls="mega-menu-full"
       aria-expanded="false"
     >
       <span class="sr-only">Open main menu</span>
       <svg
-        class="w-6 h-6"
+        class="h-6 w-6"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -44,15 +44,15 @@ import Logo from "../components/Logo.astro";
     </button>
     <div
       id="mega-menu-full"
-      class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+      class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
     >
       <ul
-        class="flex flex-col mt-4 font-medium md:flex-row md:mt-0 md:space-x-8 rtl:space-x-reverse"
+        class="mt-4 flex flex-col font-medium md:mt-0 md:flex-row md:space-x-8 rtl:space-x-reverse"
       >
         <li>
           <a
             href="#"
-            class="block py-2 px-3 text-primary hover:text-secondary border-b border-light hover:bg-neutral-secondary-soft md:hover:bg-transparent md:border-0 md:hover:text-secondary md:p-0"
+            class="block border-b border-light px-3 py-2 text-primary hover:bg-neutral-secondary-soft hover:text-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-secondary"
             aria-current="page">Home</a
           >
         </li>
@@ -60,11 +60,11 @@ import Logo from "../components/Logo.astro";
           <button
             id="mega-menu-full-dropdown-button"
             data-collapse-toggle="mega-menu-full-dropdown"
-            class="flex items-center justify-between w-full py-2 px-3 font-medium text-primary border-b border-light md:w-auto hover:bg-neutral-secondary-soft md:hover:bg-transparent md:border-0 md:hover:text-secondary md:p-0"
+            class="flex w-full items-center justify-between border-b border-light px-3 py-2 font-medium text-primary hover:bg-neutral-secondary-soft md:w-auto md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-secondary"
           >
             Company
             <svg
-              class="w-4 h-4 ms-1.5"
+              class="ms-1.5 h-4 w-4"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -83,21 +83,21 @@ import Logo from "../components/Logo.astro";
         <li>
           <a
             href="#"
-            class="block py-2 px-3 text-primary hover:text-secondary border-b border-light hover:bg-neutral-secondary-soft md:hover:bg-transparent md:border-0 md:hover:text-secondary md:p-0"
+            class="block border-b border-light px-3 py-2 text-primary hover:bg-neutral-secondary-soft hover:text-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-secondary"
             >Marketplace</a
           >
         </li>
         <li>
           <a
             href="#"
-            class="block py-2 px-3 text-primary hover:text-secondary border-b border-light hover:bg-neutral-secondary-soft md:hover:bg-transparent md:border-0 md:hover:text-secondary md:p-0"
+            class="block border-b border-light px-3 py-2 text-primary hover:bg-neutral-secondary-soft hover:text-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-secondary"
             >Resources</a
           >
         </li>
         <li>
           <a
             href="#"
-            class="block py-2 px-3 text-primary hover:text-secondary border-b border-light hover:bg-neutral-secondary-soft md:hover:bg-transparent md:border-0 md:hover:text-secondary md:p-0"
+            class="block border-b border-light px-3 py-2 text-primary hover:bg-neutral-secondary-soft hover:text-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-secondary"
             >Contact</a
           >
         </li>
@@ -106,16 +106,16 @@ import Logo from "../components/Logo.astro";
   </div>
   <div
     id="mega-menu-full-dropdown"
-    class="hidden mt-1 bg-neutral-primary-soft border-default shadow-xs border-y"
+    class="mt-1 hidden border-y border-default bg-neutral-primary-soft shadow-xs"
   >
     <div
-      class="grid max-w-7xl px-4 py-5 mx-auto text-primary sm:grid-cols-2 md:grid-cols-3 md:px-6"
+      class="mx-auto grid max-w-7xl px-4 py-5 text-primary sm:grid-cols-2 md:grid-cols-3 md:px-6"
     >
       <ul aria-labelledby="mega-menu-full-dropdown-button">
         <li>
           <a
             href="#"
-            class="block p-3 rounded-lg hover:bg-neutral-secondary-medium"
+            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
           >
             <div class="font-semibold">Online Stores</div>
             <span class="text-sm text-body"
@@ -126,7 +126,7 @@ import Logo from "../components/Logo.astro";
         <li>
           <a
             href="#"
-            class="block p-3 rounded-lg hover:bg-neutral-secondary-medium"
+            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
           >
             <div class="font-semibold">Segmentation</div>
             <span class="text-sm text-body"
@@ -137,7 +137,7 @@ import Logo from "../components/Logo.astro";
         <li>
           <a
             href="#"
-            class="block p-3 rounded-lg hover:bg-neutral-secondary-medium"
+            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
           >
             <div class="font-semibold">Marketing CRM</div>
             <span class="text-sm text-body"
@@ -150,7 +150,7 @@ import Logo from "../components/Logo.astro";
         <li>
           <a
             href="#"
-            class="block p-3 rounded-lg hover:bg-neutral-secondary-medium"
+            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
           >
             <div class="font-semibold">Online Stores</div>
             <span class="text-sm text-body"
@@ -161,7 +161,7 @@ import Logo from "../components/Logo.astro";
         <li>
           <a
             href="#"
-            class="block p-3 rounded-lg hover:bg-neutral-secondary-medium"
+            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
           >
             <div class="font-semibold">Segmentation</div>
             <span class="text-sm text-body"
@@ -172,7 +172,7 @@ import Logo from "../components/Logo.astro";
         <li>
           <a
             href="#"
-            class="block p-3 rounded-lg hover:bg-neutral-secondary-medium"
+            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
           >
             <div class="font-semibold">Marketing CRM</div>
             <span class="text-sm text-body"
@@ -185,7 +185,7 @@ import Logo from "../components/Logo.astro";
         <li>
           <a
             href="#"
-            class="block p-3 rounded-lg hover:bg-neutral-secondary-medium"
+            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
           >
             <div class="font-semibold">Audience Management</div>
             <span class="text-sm text-body"
@@ -196,7 +196,7 @@ import Logo from "../components/Logo.astro";
         <li>
           <a
             href="#"
-            class="block p-3 rounded-lg hover:bg-neutral-secondary-medium"
+            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
           >
             <div class="font-semibold">Creative Tools</div>
             <span class="text-sm text-body"
@@ -207,7 +207,7 @@ import Logo from "../components/Logo.astro";
         <li>
           <a
             href="#"
-            class="block p-3 rounded-lg hover:bg-neutral-secondary-medium"
+            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
           >
             <div class="font-semibold">Marketing Automation</div>
             <span class="text-sm text-body"

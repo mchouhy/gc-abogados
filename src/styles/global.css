@@ -15,3 +15,7 @@
   --color-secondary: #8b4545;
   --color-secondary-hover: #733838;
 }
+@theme {
+  --breakpoint-mobm: 23.4375rem;
+  --breakpoint-mobl: 26.5625rem;
+}
