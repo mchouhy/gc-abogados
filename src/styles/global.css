@@ -21,3 +21,7 @@
   --breakpoint-mobm: 23.4375rem;
   --breakpoint-mobl: 26.5625rem;
 }
+
+html {
+  scroll-behavior: smooth;
+}

@@ -3,24 +3,24 @@ const { svg: Svg, title, description, price, priceDescription } = Astro.props;
 ---
 
 <article
-  class="flex flex-col items-start gap-y-8 rounded-2xl border border-gray-400 p-6 shadow-xl transition-shadow duration-300 hover:border-secondary-hover hover:shadow-2xl"
+  class="group flex flex-col gap-y-10 rounded-2xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:border-[#8B4545] hover:shadow-2xl sm:rounded-3xl sm:p-8"
 >
   <div>
-    <div
-      class="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-secondary"
-    >
-      <Svg />
-    </div>
-    <div>
-      <h3 class="text-lg font-semibold">{title}</h3>
+    <div class="flex flex-col gap-y-2">
+      <div
+        class="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-secondary/10 group-hover:bg-secondary"
+      >
+        <Svg class="stroke-secondary group-hover:stroke-white" />
+      </div>
+      <h3 class="text-2xl font-bold">{title}</h3>
       <p class="text-sm text-gray-600">{description}</p>
     </div>
   </div>
-  <div class="mt-auto">
-    <p class="text-3xl font-bold">
+  <div class="mt-auto flex flex-col gap-y-2">
+    <p class="text-4xl font-bold">
       {price}
       <span class="text-sm font-light text-gray-600">+ IVA</span>
     </p>
-    <p class="text-xs text-gray-500">{priceDescription}</p>
+    <p class="text-sm text-gray-500">{priceDescription}</p>
   </div>
 </article>
