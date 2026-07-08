@@ -1,9 +1,57 @@
-<section id="process" class="px-4 pt-12">
-  <div class="flex flex-col gap-y-2">
+---
+import FeatureBox from "../components/FeatureBox.astro";
+import MessageSvg from "../components/MessageSvg.astro";
+import EuroSvg from "../components/EuroSvg.astro";
+import LightningSvg from "../components/LightningSvg.astro";
+import NotebookSvg from "../components/NotebookSvg.astro";
+
+const features = [
+  {
+    svg: MessageSvg,
+    title: "Contacto directo",
+    description:
+      "Hablas con nosotros, no con asistentes. Escuchamos tu caso sin prisa.",
+  },
+  {
+    svg: EuroSvg,
+    title: "Precio Cerrado",
+    description: "Te damos el precio final desde el minuto uno. Sin sorpresas.",
+  },
+  {
+    svg: LightningSvg,
+    title: "Respuesta Rápida",
+    description: "Respondemos el mismo día. Tu tiempo es valioso.",
+  },
+  {
+    svg: NotebookSvg,
+    title: "Estrategia Personal",
+    description: "Cada caso es único. Creamos un plan adaptado a ti.",
+  },
+];
+---
+
+<section id="process" class="px-4 pt-16 pb-20 sm:mx-auto sm:max-w-7xl">
+  <div class="flex flex-col items-center gap-y-2">
     <h2 class="text-start font-semibold tracking-widest text-secondary">
       PROCESO
     </h2>
-    <h3 class="text-start text-3xl font-bold">Cómo trabajamos</h3>
+    <h3 class="text-start text-2xl font-bold md:text-7xl">Cómo trabajamos</h3>
+    <p
+      class="mb-4 max-w-4xl text-sm leading-relaxed font-light text-gray-700 sm:mb-14 sm:text-lg md:text-xl lg:mb-20"
+    >
+      Desde el primer contacto hasta la resolución de tu caso, te guiamos paso a
+      paso.
+    </p>
   </div>
-  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      features.map((item) => (
+        <FeatureBox
+          svg={item.svg}
+          title={item.title}
+          description={item.description}
+        />
+      ))
+    }
+  </div>
 </section>
