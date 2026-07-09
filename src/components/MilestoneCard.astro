@@ -1,0 +1,10 @@
+---
+const { svg: Svg, result, description } = Astro.props;
+---
+
+<div
+  class="rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur-md sm:rounded-3xl sm:p-8 sm:py-12"
+>
+  <h3 class="text-3xl font-bold sm:text-5xl">{result}</h3>
+  <p class="text-base text-white/70 sm:text-lg">{description}</p>
+</div>

@@ -1,3 +1,81 @@
-<section class="bg-[#8B4545] px-4 py-16 sm:px-6 sm:py-24 lg:px-12 lg:py-32">
-  <h3>No eres un Número. Eres una Persona.</h3>
+---
+import MilestoneBullet from "../components/MilestoneBullet.astro";
+import MilestoneCard from "../components/MilestoneCard.astro";
+import CheckSvg from "../components/CheckSvg.astro";
+const results = [
+  {
+    result: "< 24h",
+    description: "Tiempo de respuesta",
+  },
+  {
+    result: "95%",
+    description: "Casos aprobados",
+  },
+  {
+    result: "500+",
+    description: "Clientes satisfechos",
+  },
+  {
+    result: "100%",
+    description: "Transparencia",
+  },
+];
+
+const milestones = [
+  {
+    svg: CheckSvg,
+    title: "Atención personalizada, sin intermediarios",
+  },
+  {
+    svg: CheckSvg,
+    title: "Precio cerrado desde el inicio",
+  },
+  {
+    svg: CheckSvg,
+    title: "Respuesta el mismo día",
+  },
+  {
+    svg: CheckSvg,
+    title: "Transparencia total en todo el proceso",
+  },
+  {
+    svg: CheckSvg,
+    title: "Seguimiento constante de tu caso",
+  },
+];
+---
+
+<section
+  class="bg-secondary px-4 py-16 text-white sm:mx-auto sm:py-24 lg:px-12 lg:py-32"
+>
+  <div
+    class="grid grid-cols-1 items-center gap-10 sm:mx-auto sm:max-w-7xl sm:grid-cols-2"
+  >
+    <aside>
+      <h2 class="text-2xl font-bold sm:text-6xl">
+        No eres un Número. Eres una Persona.
+      </h2>
+      <p
+        class="my-4 max-w-2xl text-sm leading-relaxed font-light sm:my-8 sm:text-lg md:text-xl"
+      >
+        Entendemos que detrás de cada trámite hay una vida, sueños y una
+        familia. Por eso tratamos cada caso con la dedicación y el respeto que
+        mereces.
+      </p>
+      <div class="flex flex-col gap-2 text-sm font-light sm:text-lg">
+        {
+          milestones.map((item) => (
+            <MilestoneBullet svg={item.svg} title={item.title} />
+          ))
+        }
+      </div>
+    </aside>
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {
+        results.map((item) => (
+          <MilestoneCard result={item.result} description={item.description} />
+        ))
+      }
+    </div>
+  </div>
 </section>
