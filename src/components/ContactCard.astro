@@ -1,0 +1,32 @@
+---
+const {
+  svg: Svg,
+  title,
+  description,
+  ctaText,
+  ctaLink,
+  className = "",
+} = Astro.props;
+import ArrowRightSvg from "./ArrowRightSvg.astro";
+---
+
+<a
+  class={`group flex flex-col gap-y-10 rounded-2xl border border-gray-200 p-8 transition-all duration-300 hover:shadow-2xl sm:rounded-3xl sm:p-12 ${className}`}
+  href={ctaLink}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <div class="flex flex-col gap-y-2">
+    <div class="mb-2 flex h-12 w-12 items-center justify-center rounded-lg">
+      <Svg className={title == "WhatsApp" ? "" : "stroke-secondary"} />
+    </div>
+    <h3 class="text-3xl font-bold">{title}</h3>
+    <p class="text-lg">{description}</p>
+    <div class="font-ligth flex items-center gap-x-2 text-lg">
+      {ctaText}
+      <ArrowRightSvg
+        className="transition-transform duration-350 group-hover:translate-x-2"
+      />
+    </div>
+  </div>
+</a>

@@ -1,0 +1,34 @@
+---
+import ContactCard from "../components/ContactCard.astro";
+import WhatsAppSvg from "../components/WhatsAppSvg.astro";
+import EmailSvg from "../components/EmailSvg.astro";
+---
+
+<section class="px-4 pt-20 pb-44 sm:mx-auto sm:max-w-5xl">
+  <div class="flex flex-col items-center gap-y-2">
+    <h3 class="text-start text-2xl font-bold md:text-7xl">Hablemos</h3>
+    <p
+      class="mb-4 max-w-4xl text-sm leading-relaxed font-light text-gray-700 sm:mb-14 sm:text-lg md:text-xl lg:mb-20"
+    >
+      Preferimos WhatsApp. Es más rápido, directo y humano.
+    </p>
+  </div>
+  <div class="grid grid-cols-1 gap-6 sm:gap-12 md:grid-cols-2">
+    <ContactCard
+      className="bg-secondary text-white hover:bg-secondary-hover"
+      svg={WhatsAppSvg}
+      title="WhatsApp"
+      description="Respuesta en minutos, no en días."
+      ctaText="Iniciar conversación"
+      ctaLink="https://wa.me/34600000000"
+    />
+    <ContactCard
+      className="bg-neutral-primary-soft hover:bg-neutral-primary-medium"
+      svg={EmailSvg}
+      title="Email"
+      description="Respondemos en menos de 24 horas."
+      ctaText="info@ataria.com"
+      ctaLink="mailto:info@ataria.com"
+    />
+  </div>
+</section>
