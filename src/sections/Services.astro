@@ -1,89 +1,25 @@
 ---
+import { getCollection } from "astro:content";
 import Card from "../components/Card.astro";
-import WorldSvg from "../components/WorldSvg.astro";
-import SchoolSvg from "../components/SchoolSvg.astro";
-import FamilySvg from "../components/FamilySvg.astro";
-import FlagSvg from "../components/FlagSvg.astro";
-import WorkSvg from "../components/WorkSvg.astro";
-import HouseSvg from "../components/HouseSvg.astro";
-import HandShakeSvg from "../components/HandShakeSvg.astro";
-import UsersPlusSvg from "../components/UsersPlusSvg.astro";
-import IdSvg from "../components/IdSvg.astro";
-import RefreshSvg from "../components/RefreshSvg.astro";
 import ArrowRightSvg from "../components/ArrowRightSvg.astro";
+import { SERVICE_ICONS } from "../lib/service-icons";
 
-const cards = [
-  {
-    svg: WorldSvg,
-    title: "Visado Nómada Digital",
-    description: "Vive y trabaja en España.",
-    price: "€500",
-    priceDescription: "Incluye preparación completa + tasas.",
-  },
-  {
-    svg: SchoolSvg,
-    title: "Estancia por Estudios",
-    description: "Estudia legalmente en España.",
-    price: "€250",
-    priceDescription: "Todo incluido + seguimiento.",
-  },
-  {
-    svg: FamilySvg,
-    title: "Reagrupación Familiar",
-    description: "Trae a tu familia contigo.",
-    price: "€300",
-    priceDescription: "Precio completo por persona.",
-  },
-  {
-    svg: FlagSvg,
-    title: "Nacionalidad Española",
-    description: "Obtén la ciudadanía.",
-    price: "€400",
-    priceDescription: "Desde la solicitud hasta la resolución.",
-  },
-  {
-    svg: WorkSvg,
-    title: "Residencia y trabajo",
-    description: "Trabaja legalmente por cuenta ajena o propia.",
-    price: "€350",
-    priceDescription: "Desde la solicitud hasta la resolución.",
-  },
-  {
-    svg: HouseSvg,
-    title: "Residencia no lucrativa",
-    description: "Establécete en España sin trabajar.",
-    price: "€400",
-    priceDescription: "Desde la solicitud hasta la resolución.",
-  },
-  {
-    svg: HandShakeSvg,
-    title: "Arraigo familiar",
-    description: "Residencia para familiares de nacionales UE.",
-    price: "€350",
-    priceDescription: "Desde la solicitud hasta la resolución.",
-  },
-  {
-    svg: UsersPlusSvg,
-    title: "Arraigo social",
-    description: "Regulariza tu situación en España.",
-    price: "€300",
-    priceDescription: "Desde la solicitud hasta la resolución.",
-  },
-  {
-    svg: IdSvg,
-    title: "NIE / TIE",
-    description: "Obtén tu tarjeta de identidad.",
-    price: "€150",
-    priceDescription: "Desde la solicitud hasta la resolución.",
-  },
-  {
-    svg: RefreshSvg,
-    title: "Renovaciones",
-    description: "Renueva tu permiso de residencia.",
-    price: "€250",
-    priceDescription: "Desde la solicitud hasta la resolución.",
-  },
+const SERVICE_ORDER = [
+  "visado-nomada-digital",
+  "estancia-por-estudios",
+  "reagrupacion-familiar",
+  "nacionalidad-espanola",
+  "residencia-y-trabajo",
+  "residencia-no-lucrativa",
+  "arraigo-familiar",
+  "arraigo-social",
+  "nie-tie",
+  "renovaciones",
 ];
+
+const services = (await getCollection("services")).sort(
+  (a, b) => SERVICE_ORDER.indexOf(a.id) - SERVICE_ORDER.indexOf(b.id),
+);
 ---
 
 <section id="services" class="px-4 pt-16 pb-32 sm:mx-auto sm:max-w-7xl">
@@ -102,15 +38,18 @@ const cards = [
   </div>
   <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
     {
-      cards.map((item) => (
-        <Card
-          svg={item.svg}
-          title={item.title}
-          description={item.description}
-          price={item.price}
-          priceDescription={item.priceDescription}
-        />
-      ))
+      services.map((service) => {
+        const Icon = SERVICE_ICONS[service.data.icon];
+        return (
+          <Card
+            svg={Icon}
+            title={service.data.title}
+            description={service.data.description}
+            price={service.data.price}
+            priceDescription={service.data.priceDescription}
+          />
+        );
+      })
     }
   </div>
   <article class="mt-8 flex flex-col md:gap-y-6">
