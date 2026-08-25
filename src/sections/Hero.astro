@@ -11,11 +11,7 @@ import ArrowRightSvg from "../components/ArrowRightSvg.astro";
         <span
           class="hero-h1-typo animate-hero relative text-[1.75rem] leading-[1.1] font-bold tracking-tight text-primary sm:mb-4 sm:text-5xl md:text-7xl lg:text-8xl"
         >
-          AQUÍ <span id="tw-line1" aria-hidden="true">NO ERES UN</span><span
-            id="tw-cursor"
-            class="tw-cursor"
-            aria-hidden="true">|</span
-          >
+          AQUÍ <span id="tw-line1" aria-hidden="true"></span>
         </span>
         <span
           class="hero-h1-typo2 animate-hero animate-hero-delay-1 relative mb-2 inline-block pt-2 text-[clamp(2.5rem,8vw,4rem)] leading-[0.9] font-black tracking-tighter sm:text-7xl md:text-9xl lg:text-[clamp(6rem,10vw,12rem)]"
@@ -23,7 +19,10 @@ import ArrowRightSvg from "../components/ArrowRightSvg.astro";
           <span
             id="tw-line2"
             class="bg-[linear-gradient(to_right,rgba(115,56,56,0.94),rgba(139,69,69,0.85),rgba(139,69,69,0.75))] bg-clip-text text-transparent"
-            aria-hidden="true">EXPEDIENTE</span
+            aria-hidden="true"></span><span
+            id="tw-cursor"
+            class="tw-cursor"
+            aria-hidden="true"></span
           >
         </span>
       </h1>
@@ -71,10 +70,10 @@ import ArrowRightSvg from "../components/ArrowRightSvg.astro";
 
 <script>
   (function () {
-    const TYPE_SPEED = 80;
-    const DELETE_SPEED = 50;
-    const PAUSE_DURATION = 3000;
-    const INITIAL_PAUSE = 2500;
+    const DELETE_SPEED = 40;
+    const TYPE_SPEED = 75;
+    const PAUSE_DURATION = 2000;
+    const INITIAL_PAUSE = 1500;
 
     const line1El = document.getElementById("tw-line1");
     const line2El = document.getElementById("tw-line2");
@@ -82,26 +81,29 @@ import ArrowRightSvg from "../components/ArrowRightSvg.astro";
 
     if (!line1El || !line2El || !cursorEl) return;
 
+    const el1 = line1El;
+    const el2 = line2El;
+    const cursor = cursorEl;
+
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
     if (reducedMotion) {
-      line1El.textContent = "NO ERES UN";
-      line2El.textContent = "EXPEDIENTE";
-      cursorEl.style.display = "none";
+      el1.textContent = "NO ERES UN";
+      el2.textContent = "EXPEDIENTE";
+      cursor.style.display = "none";
       return;
     }
 
-    const textA1 = "NO ERES UN";
-    const textA2 = "EXPEDIENTE";
-    const textB1 = "ERES UNA";
-    const textB2 = "PERSONA";
+    cursor.style.display = "";
 
+    const PAIRS = [
+      { l1: "NO ERES UN", l2: "EXPEDIENTE" },
+      { l1: "ERES UNA", l2: "PERSONA" },
+    ];
+    let pairIndex = 0;
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
-
-    line1El.textContent = textA1;
-    line2El.textContent = textA2;
 
     function sleep(ms: number): Promise<void> {
       return new Promise((resolve) => {
@@ -109,68 +111,127 @@ import ArrowRightSvg from "../components/ArrowRightSvg.astro";
       });
     }
 
-    async function typeText(
-      el: HTMLElement,
-      text: string,
-      speed: number,
-    ): Promise<void> {
-      for (let i = 0; i < text.length; i++) {
-        if (document.visibilityState !== "visible") {
-          await new Promise<void>((resolve) => {
-            const handler = () => {
-              if (document.visibilityState === "visible") {
-                document.removeEventListener("visibilitychange", handler);
-                resolve();
-              }
-            };
-            document.addEventListener("visibilitychange", handler);
-          });
+    function waitForVisible(): Promise<void> {
+      if (document.visibilityState === "visible") return Promise.resolve();
+      return new Promise<void>((resolve) => {
+        const handler = () => {
+          if (document.visibilityState === "visible") {
+            document.removeEventListener("visibilitychange", handler);
+            resolve();
+          }
+        };
+        document.addEventListener("visibilitychange", handler);
+      });
+    }
+
+    function isCharSpan(node: ChildNode): boolean {
+      return node.nodeType === 1 && node !== cursor;
+    }
+
+    function getCharCount(): number {
+      let count = 0;
+      for (const n of el1.childNodes) if (isCharSpan(n)) count++;
+      for (const n of el2.childNodes) if (isCharSpan(n)) count++;
+      return count;
+    }
+
+    function deleteLastChar(): boolean {
+      for (let i = el2.childNodes.length - 1; i >= 0; i--) {
+        const n = el2.childNodes[i];
+        if (isCharSpan(n)) {
+          el2.removeChild(n);
+          return true;
         }
-        el.textContent += text[i];
-        await sleep(speed);
+      }
+      for (let i = el1.childNodes.length - 1; i >= 0; i--) {
+        const n = el1.childNodes[i];
+        if (isCharSpan(n)) {
+          el1.removeChild(n);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function positionCursorAtEnd() {
+      if (cursor.parentNode) cursor.parentNode.removeChild(cursor);
+      for (const n of el2.childNodes) {
+        if (isCharSpan(n)) {
+          el2.appendChild(cursor);
+          return;
+        }
+      }
+      el1.appendChild(cursor);
+    }
+
+    function renderInitial(l1Text: string, l2Text: string) {
+      el1.textContent = "";
+      for (const ch of l1Text) {
+        const s = document.createElement("span");
+        s.textContent = ch;
+        s.className = "tw-char in";
+        el1.appendChild(s);
+      }
+      el2.textContent = "";
+      for (const ch of l2Text) {
+        const s = document.createElement("span");
+        s.textContent = ch;
+        s.className = "tw-char in";
+        el2.appendChild(s);
       }
     }
 
-    async function deleteText(
-      el: HTMLElement,
-      speed: number,
-    ): Promise<void> {
-      const text = el.textContent || "";
-      for (let i = text.length - 1; i >= 0; i--) {
-        if (document.visibilityState !== "visible") {
-          await new Promise<void>((resolve) => {
-            const handler = () => {
-              if (document.visibilityState === "visible") {
-                document.removeEventListener("visibilitychange", handler);
-                resolve();
-              }
-            };
-            document.addEventListener("visibilitychange", handler);
-          });
-        }
-        el.textContent = text.substring(0, i);
-        await sleep(speed);
+    async function typeChar(ch: string, targetEl: HTMLElement) {
+      const span = document.createElement("span");
+      span.textContent = ch;
+      span.className = "tw-char";
+      targetEl.appendChild(span);
+      positionCursorAtEnd();
+
+      await waitForVisible();
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          span.classList.add("in");
+        });
+      });
+      await sleep(TYPE_SPEED);
+    }
+
+    async function deleteAll() {
+      while (getCharCount() > 0) {
+        await waitForVisible();
+        deleteLastChar();
+        positionCursorAtEnd();
+        await sleep(DELETE_SPEED);
       }
     }
+
+    async function typeAll(l1Text: string, l2Text: string) {
+      for (const ch of l1Text) {
+        await typeChar(ch, el1);
+      }
+      for (const ch of l2Text) {
+        await typeChar(ch, el2);
+      }
+    }
+
+    renderInitial(PAIRS[pairIndex].l1, PAIRS[pairIndex].l2);
+    positionCursorAtEnd();
 
     async function runCycle() {
       await sleep(INITIAL_PAUSE);
 
       while (true) {
-        await deleteText(line2El as HTMLElement, DELETE_SPEED);
-        await deleteText(line1El as HTMLElement, DELETE_SPEED);
+        await deleteAll();
 
-        await typeText(line1El as HTMLElement, textB1, TYPE_SPEED);
-        await typeText(line2El as HTMLElement, textB2, TYPE_SPEED);
-
+        pairIndex = (pairIndex + 1) % PAIRS.length;
+        await typeAll(PAIRS[pairIndex].l1, PAIRS[pairIndex].l2);
         await sleep(PAUSE_DURATION);
 
-        await deleteText(line2El as HTMLElement, DELETE_SPEED);
-        await deleteText(line1El as HTMLElement, DELETE_SPEED);
+        await deleteAll();
 
-        await typeText(line1El as HTMLElement, textA1, TYPE_SPEED);
-        await typeText(line2El as HTMLElement, textA2, TYPE_SPEED);
-
+        pairIndex = (pairIndex + 1) % PAIRS.length;
+        await typeAll(PAIRS[pairIndex].l1, PAIRS[pairIndex].l2);
         await sleep(PAUSE_DURATION);
       }
     }

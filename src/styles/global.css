@@ -93,12 +93,38 @@ html {
   transition-delay: 800ms;
 }
 
+.tw-char {
+  display: inline;
+  opacity: 0;
+  filter: blur(3px);
+  transform: translateY(3px);
+  transition:
+    opacity 180ms ease-out,
+    filter 180ms ease-out,
+    transform 180ms ease-out;
+}
+
+.tw-char.in {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
 .tw-cursor {
   display: inline-block;
-  margin-left: 0.15em;
-  font-weight: 200;
+  margin-left: 0.05em;
+  font-weight: 200 !important;
   animation: cursorBlink 830ms step-end infinite;
   color: var(--color-primary);
+}
+
+.tw-cursor::after {
+  content: "";
+  display: inline-block;
+  width: 0.12em;
+  height: 0.85em;
+  background-color: currentColor;
+  vertical-align: text-bottom;
 }
 
 @keyframes cursorBlink {
@@ -135,6 +161,13 @@ html {
 
   .tw-cursor {
     display: none !important;
+  }
+
+  .tw-char {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
 
