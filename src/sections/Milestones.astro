@@ -6,18 +6,34 @@ const results = [
   {
     result: "< 24h",
     description: "Tiempo de respuesta",
+    counterTarget: 24,
+    counterPrefix: "<",
+    counterSuffix: "h",
+    counterMode: "count-down",
   },
   {
     result: "95%",
     description: "Casos aprobados",
+    counterTarget: 95,
+    counterPrefix: "",
+    counterSuffix: "%",
+    counterMode: "count-up",
   },
   {
     result: "500+",
     description: "Clientes satisfechos",
+    counterTarget: 500,
+    counterPrefix: "",
+    counterSuffix: "+",
+    counterMode: "count-up",
   },
   {
     result: "100%",
     description: "Transparencia",
+    counterTarget: 100,
+    counterPrefix: "",
+    counterSuffix: "%",
+    counterMode: "count-up",
   },
 ];
 
@@ -81,7 +97,14 @@ const milestones = [
           const delayClass = `animate-on-scroll-delay-${Math.min(i + 1, 4)}`;
           return (
             <div class:list={["animate-on-scroll", delayClass]}>
-              <MilestoneCard result={item.result} description={item.description} />
+              <MilestoneCard
+                result={item.result}
+                description={item.description}
+                counterTarget={item.counterTarget}
+                counterPrefix={item.counterPrefix}
+                counterSuffix={item.counterSuffix}
+                counterMode={item.counterMode}
+              />
             </div>
           );
         })

@@ -26,10 +26,70 @@ import "../styles/global.css";
 </Layout>
 
 <script>
-  function setupScrollAnimations() {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      document.querySelectorAll(".animate-on-scroll, .animate-hero").forEach((el) => {
-        el.classList.add("is-visible");
+  const COUNTER_DURATION = 1400;
+
+  function easeOutExpo(t: number): number {
+    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+  }
+
+  function animateCounter(el: HTMLElement) {
+    const target = Number(el.dataset.counterTarget);
+    const prefix = el.dataset.counterPrefix || "";
+    const suffix = el.dataset.counterSuffix || "";
+    const mode = el.dataset.counterMode || "count-up";
+    const display = el.querySelector("[data-counter-display]");
+    if (!display || isNaN(target)) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (reducedMotion) {
+      if (display) {
+        display.textContent = `${prefix}${target}${suffix}`;
+      }
+      return;
+    }
+
+    const startValue = mode === "count-down" ? 120 : 0;
+    const startTime = performance.now();
+
+    function tick(now: number) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / COUNTER_DURATION, 1);
+      const easedProgress = easeOutExpo(progress);
+      let current: number;
+
+      if (mode === "count-down") {
+        current = Math.round(startValue - (startValue - target) * easedProgress);
+      } else {
+        current = Math.round(startValue + (target - startValue) * easedProgress);
+      }
+
+      if (display) display.textContent = `${prefix}${current}${suffix}`;
+
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      }
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  function setup() {
+    document.documentElement.classList.add("js-animated");
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reducedMotion) {
+      document
+        .querySelectorAll(".animate-on-scroll, .animate-hero")
+        .forEach((el) => {
+          el.classList.add("is-visible");
+        });
+      document.querySelectorAll("[data-counter-target]").forEach((el) => {
+        animateCounter(el as HTMLElement);
       });
       return;
     }
@@ -39,14 +99,22 @@ import "../styles/global.css";
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
+            const counterEl =
+              entry.target.querySelector<HTMLElement>("[data-counter-target]") ||
+              (entry.target.hasAttribute("data-counter-target")
+                ? (entry.target as HTMLElement)
+                : null);
+            if (counterEl) animateCounter(counterEl);
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
     );
 
-    document.querySelectorAll(".animate-on-scroll").forEach((el) => observer.observe(el));
+    document
+      .querySelectorAll(".animate-on-scroll")
+      .forEach((el) => observer.observe(el));
 
     document.querySelectorAll(".animate-hero").forEach((el) => {
       el.classList.add("is-visible");
@@ -54,6 +122,6 @@ import "../styles/global.css";
     });
   }
 
-  setupScrollAnimations();
-  document.addEventListener("astro:after-swap", setupScrollAnimations);
+  setup();
+  document.addEventListener("astro:after-swap", setup);
 </script>

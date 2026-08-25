@@ -1,13 +1,16 @@
 ---
-const { class: className = "" } = Astro.props;
+const { class: className = "", dark = false } = Astro.props;
+
+const baseClass = dark
+  ? "font-heading text-lg font-semibold tracking-tight text-white"
+  : "font-heading text-lg font-semibold tracking-tight text-primary";
+
+const accentClass = dark
+  ? "font-light text-white/70"
+  : "font-light text-secondary";
 ---
 
-<span
-  class:list={[
-    "font-heading text-lg font-semibold tracking-tight text-primary",
-    className,
-  ]}
->
+<span class:list={[baseClass, className]}>
   Ataria
-  <span class="font-light text-secondary">Abogados</span>
+  <span class={accentClass}>Abogados</span>
 </span>
