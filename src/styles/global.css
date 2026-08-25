@@ -112,19 +112,21 @@ html {
 
 .tw-cursor {
   display: inline-block;
-  margin-left: 0.05em;
-  font-weight: 200 !important;
-  animation: cursorBlink 830ms step-end infinite;
-  color: var(--color-primary);
+  margin-left: 0.15em;
+  font-weight: 100 !important;
+  animation: cursorBlink 980ms step-end infinite;
+  background-color: currentColor;
+  color: var(--color-primary-gray);
 }
 
 .tw-cursor::after {
   content: "";
   display: inline-block;
-  width: 0.12em;
-  height: 0.85em;
+  width: 0.01em;
+  height: 0.76em;
+  vertical-align: text-middle;
   background-color: currentColor;
-  vertical-align: text-bottom;
+  color: currentColor;
 }
 
 @keyframes cursorBlink {
