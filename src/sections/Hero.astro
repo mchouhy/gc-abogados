@@ -8,15 +8,17 @@ import ArrowRightSvg from "../components/ArrowRightSvg.astro";
   >
     <header>
       <h1 class="flex flex-col">
-        <span
-          class="hero-h1-typo animate-hero text-[1.75rem] leading-[1.1] font-bold tracking-tight text-primary sm:mb-4 sm:text-5xl md:text-7xl lg:text-8xl"
-          >AQUÍ NO ERES UN</span
+        <span class="hero-h1-typo animate-hero relative text-[1.75rem] leading-[1.1] font-bold tracking-tight text-primary sm:mb-4 sm:text-5xl md:text-7xl lg:text-8xl">
+          <span aria-hidden="true">AQUÍ NO ERES UN</span>
+          <span class="line-morph-replace" aria-hidden="true">AQUÍ ERES UNA</span>
+        </span>
+        <span class="hero-h1-typo2 animate-hero animate-hero-delay-1 relative mb-2 pt-2 text-[clamp(2.5rem,8vw,4rem)] leading-[0.9] font-black tracking-tighter sm:text-7xl md:text-9xl lg:text-[clamp(6rem,10vw,12rem)]"
         >
-        <span
-          class="hero-h1-typo2 animate-hero animate-hero-delay-1 mb-2 bg-[linear-gradient(to_right,rgba(115,56,56,0.94),rgba(139,69,69,0.85),rgba(139,69,69,0.75))] bg-clip-text pt-2 text-[clamp(2.5rem,8vw,4rem)] leading-[0.9] font-black tracking-tighter text-transparent sm:text-7xl md:text-9xl lg:text-[clamp(6rem,10vw,12rem)]"
-          >EXPEDIENTE</span
-        >
+          <span class="bg-[linear-gradient(to_right,rgba(115,56,56,0.94),rgba(139,69,69,0.85),rgba(139,69,69,0.75))] bg-clip-text text-transparent" aria-hidden="true">EXPEDIENTE</span>
+          <span class="line-morph-replace bg-[linear-gradient(to_right,rgba(115,56,56,0.94),rgba(139,69,69,0.85),rgba(139,69,69,0.75))] bg-clip-text text-transparent" aria-hidden="true">PERSONA</span>
+        </span>
       </h1>
+      <span class="sr-only">Aquí eres una persona</span>
       <p
         class="animate-hero animate-hero-delay-2 text-normal leading-relaxed font-medium text-pretty text-primary mobl:text-lg sm:text-lg md:text-xl lg:text-2xl xl:text-3xl"
       >

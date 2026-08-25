@@ -91,6 +91,99 @@ html {
   transition-delay: 800ms;
 }
 
+.line-morph-replace {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+}
+
+.js-animated .hero-h1-typo .line-morph-replace {
+  animation: heroMorphA 7600ms cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.js-animated .hero-h1-typo2 .line-morph-replace {
+  animation: heroMorphA 7600ms cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  animation-delay: 200ms;
+}
+
+.js-animated .hero-h1-typo > span:first-child {
+  animation: heroMorphB 7600ms cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.js-animated .hero-h1-typo2 > span:first-child {
+  animation: heroMorphB 7600ms cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  animation-delay: 200ms;
+}
+
+@keyframes heroMorphA {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+    filter: blur(3px);
+  }
+  39.5% {
+    opacity: 0;
+    transform: translateY(4px);
+    filter: blur(3px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  89.5% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(4px);
+    filter: blur(3px);
+  }
+}
+
+@keyframes heroMorphB {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  39.5% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(-4px);
+    filter: blur(3px);
+  }
+  89.5% {
+    opacity: 0;
+    transform: translateY(-4px);
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .js-animated .animate-on-scroll,
   .js-animated .animate-hero {
@@ -99,6 +192,17 @@ html {
     filter: none !important;
     transition: none !important;
     transition-delay: 0ms !important;
+  }
+
+  .js-animated .hero-h1-typo .line-morph-replace,
+  .js-animated .hero-h1-typo2 .line-morph-replace,
+  .js-animated .hero-h1-typo > span:first-child,
+  .js-animated .hero-h1-typo2 > span:first-child {
+    animation: none !important;
+  }
+
+  .line-morph-replace {
+    display: none;
   }
 }
 
