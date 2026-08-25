@@ -104,7 +104,6 @@ html {
 
 .js-animated .hero-h1-typo2 .line-morph-replace {
   animation: heroMorphA 7600ms cubic-bezier(0.16, 1, 0.3, 1) infinite;
-  animation-delay: 200ms;
 }
 
 .js-animated .hero-h1-typo > span:first-child {
@@ -113,7 +112,6 @@ html {
 
 .js-animated .hero-h1-typo2 > span:first-child {
   animation: heroMorphB 7600ms cubic-bezier(0.16, 1, 0.3, 1) infinite;
-  animation-delay: 200ms;
 }
 
 @keyframes heroMorphA {
