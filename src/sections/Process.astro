@@ -30,28 +30,39 @@ const features = [
 ];
 ---
 
-<section id="process" class="px-4 pt-20 pb-44 sm:mx-auto sm:max-w-7xl">
-  <div class="flex flex-col items-center gap-y-2">
-    <h2 class="text-start font-semibold tracking-widest text-secondary">
+<section id="process" class="px-4 pt-20 pb-32 sm:mx-auto sm:max-w-7xl">
+  <div class="flex flex-col items-start gap-y-2 sm:items-center">
+    <h2
+      class="animate-on-scroll text-start text-sm font-semibold tracking-widest text-secondary sm:text-base"
+    >
       PROCESO
     </h2>
-    <h3 class="text-start text-2xl font-bold md:text-7xl">Cómo trabajamos</h3>
+    <h3
+      class="animate-on-scroll animate-on-scroll-delay-1 text-start text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl"
+    >
+      Cómo trabajamos
+    </h3>
     <p
-      class="mb-4 max-w-4xl text-sm leading-relaxed font-light text-gray-700 sm:mb-14 sm:text-lg md:text-xl lg:mb-20"
+      class="animate-on-scroll animate-on-scroll-delay-2 mb-4 max-w-4xl text-sm leading-relaxed font-light text-gray-700 sm:mb-14 sm:text-base md:text-lg lg:text-xl"
     >
       Desde el primer contacto hasta la resolución de tu caso, te guiamos paso a
       paso.
     </p>
   </div>
-  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4 lg:gap-8">
     {
-      features.map((item) => (
-        <FeatureBox
-          svg={item.svg}
-          title={item.title}
-          description={item.description}
-        />
-      ))
+      features.map((item, i) => {
+        const delayClass = `animate-on-scroll-delay-${Math.min(i + 1, 4)}`;
+        return (
+          <div class:list={["animate-on-scroll", delayClass]}>
+            <FeatureBox
+              svg={item.svg}
+              title={item.title}
+              description={item.description}
+            />
+          </div>
+        );
+      })
     }
   </div>
 </section>

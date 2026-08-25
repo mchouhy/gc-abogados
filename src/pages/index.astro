@@ -12,12 +12,48 @@ import "../styles/global.css";
 ---
 
 <Layout>
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
   <Header />
-  <Hero />
-  <Services />
-  <Process />
-  <Milestones />
-  <Contact />
-  <FinalCTA />
+  <main id="main-content">
+    <Hero />
+    <Services />
+    <Process />
+    <Milestones />
+    <Contact />
+    <FinalCTA />
+  </main>
   <Footer />
 </Layout>
+
+<script>
+  function setupScrollAnimations() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.querySelectorAll(".animate-on-scroll, .animate-hero").forEach((el) => {
+        el.classList.add("is-visible");
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+    );
+
+    document.querySelectorAll(".animate-on-scroll").forEach((el) => observer.observe(el));
+
+    document.querySelectorAll(".animate-hero").forEach((el) => {
+      el.classList.add("is-visible");
+      observer.unobserve(el);
+    });
+  }
+
+  setupScrollAnimations();
+  document.addEventListener("astro:after-swap", setupScrollAnimations);
+</script>

@@ -2,9 +2,7 @@
 @plugin "@tailwindcss/typography";
 @import "tailwind-animations";
 @import "@fontsource-variable/hubot-sans";
-@import "flowbite/src/themes/default";
-@plugin "flowbite/plugin";
-@source "../../node_modules/flowbite";
+
 @theme {
   --font-bebas-neue: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
   --font-open-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
@@ -17,6 +15,7 @@
   --color-secondary: #8b4545;
   --color-secondary-hover: #733838;
 }
+
 @theme {
   --breakpoint-mobm: 23.4375rem;
   --breakpoint-mobl: 26.5625rem;
@@ -24,4 +23,98 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-on-scroll-delay-1 {
+  transition-delay: 100ms;
+}
+
+.animate-on-scroll-delay-2 {
+  transition-delay: 200ms;
+}
+
+.animate-on-scroll-delay-3 {
+  transition-delay: 300ms;
+}
+
+.animate-on-scroll-delay-4 {
+  transition-delay: 400ms;
+}
+
+.animate-hero {
+  opacity: 0;
+  transform: translateY(12px);
+  filter: blur(6px);
+}
+
+.animate-hero.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 800ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 800ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-hero-delay-1 {
+  transition-delay: 200ms;
+}
+
+.animate-hero-delay-2 {
+  transition-delay: 400ms;
+}
+
+.animate-hero-delay-3 {
+  transition-delay: 600ms;
+}
+
+.animate-hero-delay-4 {
+  transition-delay: 800ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll,
+  .animate-hero {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 50;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-secondary);
+  color: white;
+  font-weight: 600;
+  border-radius: 0 0 0.5rem 0.5rem;
+  transition: top 200ms ease;
+}
+
+.skip-link:focus {
+  top: 0;
 }

@@ -45,36 +45,46 @@ const milestones = [
 ];
 ---
 
-<section
-  class="bg-secondary px-4 py-16 text-white sm:mx-auto sm:py-24 lg:px-12 lg:py-32"
->
+<section class="bg-secondary px-4 py-16 text-white sm:px-6 sm:py-24 lg:px-12 lg:py-32">
   <div
-    class="grid grid-cols-1 items-center gap-10 sm:mx-auto sm:max-w-7xl sm:grid-cols-2"
+    class="grid grid-cols-1 items-center gap-10 sm:mx-auto sm:max-w-7xl sm:grid-cols-2 sm:gap-12"
   >
     <aside>
-      <h2 class="text-2xl font-bold sm:text-6xl">
+      <h2
+        class="animate-on-scroll text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl"
+      >
         No eres un Número. Eres una Persona.
       </h2>
       <p
-        class="my-4 max-w-2xl text-sm leading-relaxed font-light sm:my-8 sm:text-lg md:text-xl"
+        class="animate-on-scroll animate-on-scroll-delay-1 my-4 max-w-2xl text-sm leading-relaxed font-light sm:my-8 sm:text-base md:text-lg lg:text-xl"
       >
         Entendemos que detrás de cada trámite hay una vida, sueños y una
         familia. Por eso tratamos cada caso con la dedicación y el respeto que
         mereces.
       </p>
-      <div class="flex flex-col gap-2 text-sm font-light sm:text-lg">
+      <div class="flex flex-col gap-3 text-sm font-light sm:text-base md:text-lg">
         {
-          milestones.map((item) => (
-            <MilestoneBullet svg={item.svg} title={item.title} />
-          ))
+          milestones.map((item, i) => {
+            const delayClass = `animate-on-scroll-delay-${Math.min(i + 1, 4)}`;
+            return (
+              <div class:list={["animate-on-scroll", delayClass]}>
+                <MilestoneBullet svg={item.svg} title={item.title} />
+              </div>
+            );
+          })
         }
       </div>
     </aside>
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
       {
-        results.map((item) => (
-          <MilestoneCard result={item.result} description={item.description} />
-        ))
+        results.map((item, i) => {
+          const delayClass = `animate-on-scroll-delay-${Math.min(i + 1, 4)}`;
+          return (
+            <div class:list={["animate-on-scroll", delayClass]}>
+              <MilestoneCard result={item.result} description={item.description} />
+            </div>
+          );
+        })
       }
     </div>
   </div>

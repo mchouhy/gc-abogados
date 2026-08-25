@@ -1,55 +1,37 @@
 ---
 const { title } = Astro.props;
-const pageTitle = title ? `${title} | GC Abogados` : "GC Abogados";
+const pageTitle = title ? `${title} | Ataria Abogados` : "Ataria Abogados";
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://atariaabogados.com");
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
-      rel="stylesheet"
-    />
     <title>{pageTitle}</title>
+    <link rel="canonical" href={canonicalURL} />
     <meta
       name="description"
-      content="GC Abogados es un despacho de abogados especializado en derecho civil, mercantil y laboral. Ofrecemos asesoramiento jurídico personalizado y soluciones efectivas para nuestros clientes."
+      content="Ataria Abogados — Despacho especializado en extranjería e inmigración en España. Residencia, nacionalidad, visados y más. Precio cerrado, respuesta el mismo día."
     />
     <meta
       name="keywords"
-      content="GC Abogados, despacho de abogados, extranjería, derecho penal, regularización masiva 2026, residencia, visado de estudios"
+      content="Ataria Abogados, abogado extranjería, abogado inmigración España, residencia, nacionalidad española, visado, NIE, TIE, arraigo, reagrupación familiar"
     />
-    <meta name="author" content="Mariano Chouhy" />
+    <meta name="author" content="Ataria Abogados" />
     <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="bingbot" content="index, follow" />
-    <meta name="yandexbot" content="index, follow" />
-    <script
-      is:inline
-      src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"
-    ></script>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ataria Abogados — Extranjería e inmigración en España" />
+    <meta property="og:description" content="Despacho especializado en extranjería e inmigración. Residencia, nacionalidad, visados y más. Precio cerrado, respuesta el mismo día." />
+    <meta property="og:locale" content="es_ES" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Ataria Abogados — Extranjería e inmigración en España" />
+    <meta name="twitter:description" content="Despacho especializado en extranjería e inmigración. Precio cerrado, respuesta el mismo día." />
   </head>
   <body>
     <slot />
@@ -59,16 +41,17 @@ const pageTitle = title ? `${title} | GC Abogados` : "GC Abogados";
 <style is:global>
   @import "tailwindcss";
   @import "tailwind-animations";
+  @import "@fontsource-variable/hubot-sans";
 
-  * {
-    /* outline: red solid 1px; */
-  }
   :root {
-    --font-heading: "Hubot Sans", sans-serif;
+    --font-heading: "Hubot Sans Variable", "Hubot Sans", sans-serif;
   }
+
   body {
-    font-family: var(--font-inter);
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
     background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .hero-h1-typo {
@@ -83,5 +66,22 @@ const pageTitle = title ? `${title} | GC Abogados` : "GC Abogados";
     font-weight: 600;
     letter-spacing: -0.05em;
     line-height: 0.9;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    .animate-on-scroll {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+    }
   }
 </style>

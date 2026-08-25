@@ -3,219 +3,145 @@ import Logo from "../components/Logo.astro";
 ---
 
 <nav
-  class="fixed inset-s-0 top-0 z-20 w-full border-b border-default bg-neutral-primary"
+  class="fixed inset-x-0 top-0 z-20 border-b border-gray-200/60 bg-[#f8f9fa]/90 backdrop-blur-md"
+  aria-label="Navegación principal"
 >
   <div
-    class="mx-auto flex max-w-6xl flex-wrap items-center justify-between p-2"
+    class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6"
   >
-    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <!-- <img
-        src="https://flowbite.com/docs/images/logo.svg"
-        class="h-7"
-        alt="G&C Abogados Logo"
-      /> -->
-      <span
-        class="self-center text-sm font-semibold whitespace-nowrap text-primary"
-        >Ataria Abogados</span
-      >
+    <a href="/" class="flex items-center" aria-label="Ataria Abogados — Inicio">
+      <Logo />
     </a>
+
+    <ul class="hidden items-center gap-8 md:flex">
+      <li>
+        <a
+          href="#services"
+          class="text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-secondary"
+          >Trámites</a
+        >
+      </li>
+      <li>
+        <a
+          href="#process"
+          class="text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-secondary"
+          >Cómo trabajamos</a
+        >
+      </li>
+      <li>
+        <a
+          href="#contact"
+          class="text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-secondary"
+          >Contacto</a
+        >
+      </li>
+      <li>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://wa.me/34613168703?text=Hola%20Ataria%20Abogados%2C%20estoy%20interesado%20en%20sus%20servicios."
+          class="rounded-full bg-[#8b4545] px-5 py-2 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#733838] hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8b4545]"
+          >Cuéntanos tu caso</a
+        >
+      </li>
+    </ul>
+
     <button
-      data-collapse-toggle="mega-menu-full"
       type="button"
-      class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-primary hover:bg-neutral-secondary-soft hover:text-primary focus:ring-2 focus:ring-default focus:outline-none md:hidden"
-      aria-controls="mega-menu-full"
+      class="inline-flex items-center justify-center rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8b4545] md:hidden"
       aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Abrir menú"
     >
-      <span class="sr-only">Open main menu</span>
       <svg
         class="h-6 w-6"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
         fill="none"
         viewBox="0 0 24 24"
-        ><path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-width="2"
-          d="M5 7h14M5 12h14M5 17h14"></path></svg
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
       >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"
+        ></path>
+      </svg>
     </button>
-    <div
-      id="mega-menu-full"
-      class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
-    >
-      <ul
-        class="mt-4 flex flex-col font-medium md:mt-0 md:flex-row md:space-x-8 rtl:space-x-reverse"
-      >
-        <li>
-          <a
-            href="#"
-            class="block border-b border-light px-3 py-2 text-primary hover:bg-neutral-secondary-soft hover:text-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-secondary"
-            aria-current="page">Home</a
-          >
-        </li>
-        <li>
-          <button
-            id="mega-menu-full-dropdown-button"
-            data-collapse-toggle="mega-menu-full-dropdown"
-            class="flex w-full items-center justify-between border-b border-light px-3 py-2 font-medium text-primary hover:bg-neutral-secondary-soft md:w-auto md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-secondary"
-          >
-            Company
-            <svg
-              class="ms-1.5 h-4 w-4"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-              ><path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m19 9-7 7-7-7"></path></svg
-            >
-          </button>
-        </li>
-        <li>
-          <a
-            href="#"
-            class="block border-b border-light px-3 py-2 text-primary hover:bg-neutral-secondary-soft hover:text-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-secondary"
-            >Marketplace</a
-          >
-        </li>
-        <li>
-          <a
-            href="#"
-            class="block border-b border-light px-3 py-2 text-primary hover:bg-neutral-secondary-soft hover:text-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-secondary"
-            >Resources</a
-          >
-        </li>
-        <li>
-          <a
-            href="#"
-            class="block border-b border-light px-3 py-2 text-primary hover:bg-neutral-secondary-soft hover:text-secondary md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-secondary"
-            >Contact</a
-          >
-        </li>
-      </ul>
-    </div>
   </div>
+
   <div
-    id="mega-menu-full-dropdown"
-    class="mt-1 hidden border-y border-default bg-neutral-primary-soft shadow-xs"
+    id="mobile-menu"
+    class="hidden border-t border-gray-200/60 bg-[#f8f9fa]/95 backdrop-blur-md md:hidden"
   >
-    <div
-      class="mx-auto grid max-w-7xl px-4 py-5 text-primary sm:grid-cols-2 md:grid-cols-3 md:px-6"
-    >
-      <ul aria-labelledby="mega-menu-full-dropdown-button">
-        <li>
-          <a
-            href="#"
-            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
-          >
-            <div class="font-semibold">Online Stores</div>
-            <span class="text-sm text-body"
-              >Connect with third-party tools that you're already using.</span
-            >
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
-          >
-            <div class="font-semibold">Segmentation</div>
-            <span class="text-sm text-body"
-              >Connect with third-party tools that you're already using.</span
-            >
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
-          >
-            <div class="font-semibold">Marketing CRM</div>
-            <span class="text-sm text-body"
-              >Connect with third-party tools that you're already using.</span
-            >
-          </a>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <a
-            href="#"
-            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
-          >
-            <div class="font-semibold">Online Stores</div>
-            <span class="text-sm text-body"
-              >Connect with third-party tools that you're already using.</span
-            >
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
-          >
-            <div class="font-semibold">Segmentation</div>
-            <span class="text-sm text-body"
-              >Connect with third-party tools that you're already using.</span
-            >
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
-          >
-            <div class="font-semibold">Marketing CRM</div>
-            <span class="text-sm text-body"
-              >Connect with third-party tools that you're already using.</span
-            >
-          </a>
-        </li>
-      </ul>
-      <ul class="hidden md:block">
-        <li>
-          <a
-            href="#"
-            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
-          >
-            <div class="font-semibold">Audience Management</div>
-            <span class="text-sm text-body"
-              >Connect with third-party tools that you're already using.</span
-            >
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
-          >
-            <div class="font-semibold">Creative Tools</div>
-            <span class="text-sm text-body"
-              >Connect with third-party tools that you're already using.</span
-            >
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            class="block rounded-lg p-3 hover:bg-neutral-secondary-medium"
-          >
-            <div class="font-semibold">Marketing Automation</div>
-            <span class="text-sm text-body"
-              >Connect with third-party tools that you're already using.</span
-            >
-          </a>
-        </li>
-      </ul>
+    <div class="space-y-1 px-4 pb-4 pt-2">
+      <a
+        href="#services"
+        class="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-secondary"
+        >Trámites</a
+      >
+      <a
+        href="#process"
+        class="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-secondary"
+        >Cómo trabajamos</a
+      >
+      <a
+        href="#contact"
+        class="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-secondary"
+        >Contacto</a
+      >
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://wa.me/34613168703?text=Hola%20Ataria%20Abogados%2C%20estoy%20interesado%20en%20sus%20servicios."
+        class="mt-2 block rounded-full bg-[#8b4545] px-5 py-2.5 text-center text-sm font-semibold text-white transition-all duration-200 hover:bg-[#733838]"
+        >Cuéntanos tu caso</a
+      >
     </div>
   </div>
 </nav>
+
+<script>
+  function setupMobileMenu() {
+    const btn = document.querySelector<HTMLButtonElement>(
+      '[aria-controls="mobile-menu"]',
+    );
+    const menu = document.getElementById("mobile-menu");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", () => {
+      const expanded = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!expanded));
+      menu.classList.toggle("hidden");
+
+      if (!expanded) {
+        const icon = btn.querySelector("svg");
+        if (icon) {
+          icon.innerHTML =
+            '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>';
+        }
+        btn.setAttribute("aria-label", "Cerrar menú");
+      } else {
+        const icon = btn.querySelector("svg");
+        if (icon) {
+          icon.innerHTML =
+            '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>';
+        }
+        btn.setAttribute("aria-label", "Abrir menú");
+      }
+    });
+
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        menu.classList.add("hidden");
+        btn.setAttribute("aria-expanded", "false");
+        const icon = btn.querySelector("svg");
+        if (icon) {
+          icon.innerHTML =
+            '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>';
+        }
+        btn.setAttribute("aria-label", "Abrir menú");
+      });
+    });
+  }
+
+  setupMobileMenu();
+  document.addEventListener("astro:after-swap", setupMobileMenu);
+</script>
