@@ -40,7 +40,8 @@ html {
 .js-animated .animate-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -70,7 +71,8 @@ html {
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
-  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 800ms cubic-bezier(0.16, 1, 0.3, 1),
     filter 800ms cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -91,82 +93,21 @@ html {
   transition-delay: 800ms;
 }
 
-.line-morph-replace {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  opacity: 0;
+.tw-cursor {
+  display: inline-block;
+  margin-left: 0.15em;
+  font-weight: 200;
+  animation: cursorBlink 830ms step-end infinite;
+  color: var(--color-primary);
 }
 
-.js-animated .hero-h1-typo .line-morph-replace {
-  animation: heroMorphA 7600ms cubic-bezier(0.16, 1, 0.3, 1) infinite;
-}
-
-.js-animated .hero-h1-typo2 .line-morph-replace {
-  animation: heroMorphA 7600ms cubic-bezier(0.16, 1, 0.3, 1) infinite;
-}
-
-.js-animated .hero-h1-typo > span:first-child {
-  animation: heroMorphB 7600ms cubic-bezier(0.16, 1, 0.3, 1) infinite;
-}
-
-.js-animated .hero-h1-typo2 > span:first-child {
-  animation: heroMorphB 7600ms cubic-bezier(0.16, 1, 0.3, 1) infinite;
-}
-
-@keyframes heroMorphA {
-  0% {
-    opacity: 0;
-    transform: translateY(4px);
-    filter: blur(3px);
-  }
-  39.5% {
-    opacity: 0;
-    transform: translateY(4px);
-    filter: blur(3px);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-  89.5% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
+@keyframes cursorBlink {
+  0%,
   100% {
-    opacity: 0;
-    transform: translateY(4px);
-    filter: blur(3px);
-  }
-}
-
-@keyframes heroMorphB {
-  0% {
     opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-  39.5% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
   }
   50% {
     opacity: 0;
-    transform: translateY(-4px);
-    filter: blur(3px);
-  }
-  89.5% {
-    opacity: 0;
-    transform: translateY(-4px);
-    filter: blur(3px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
   }
 }
 
@@ -192,15 +133,8 @@ html {
     transition-delay: 0ms !important;
   }
 
-  .js-animated .hero-h1-typo .line-morph-replace,
-  .js-animated .hero-h1-typo2 .line-morph-replace,
-  .js-animated .hero-h1-typo > span:first-child,
-  .js-animated .hero-h1-typo2 > span:first-child {
-    animation: none !important;
-  }
-
-  .line-morph-replace {
-    display: none;
+  .tw-cursor {
+    display: none !important;
   }
 }
 

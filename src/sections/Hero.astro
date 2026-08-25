@@ -8,17 +8,28 @@ import ArrowRightSvg from "../components/ArrowRightSvg.astro";
   >
     <header>
       <h1 class="flex flex-col">
-        <span class="hero-h1-typo animate-hero relative text-[1.75rem] leading-[1.1] font-bold tracking-tight text-primary sm:mb-4 sm:text-5xl md:text-7xl lg:text-8xl">
-          <span aria-hidden="true">AQUÍ NO ERES UN</span>
-          <span class="line-morph-replace" aria-hidden="true">AQUÍ ERES UNA</span>
-        </span>
-        <span class="hero-h1-typo2 animate-hero animate-hero-delay-1 relative mb-2 inline-block pt-2 text-[clamp(2.5rem,8vw,4rem)] leading-[0.9] font-black tracking-tighter sm:text-7xl md:text-9xl lg:text-[clamp(6rem,10vw,12rem)]"
+        <span
+          class="hero-h1-typo animate-hero relative text-[1.75rem] leading-[1.1] font-bold tracking-tight text-primary sm:mb-4 sm:text-5xl md:text-7xl lg:text-8xl"
         >
-          <span class="bg-[linear-gradient(to_right,rgba(115,56,56,0.94),rgba(139,69,69,0.85),rgba(139,69,69,0.75))] bg-clip-text text-transparent" aria-hidden="true">EXPEDIENTE</span>
-          <span class="line-morph-replace bg-[linear-gradient(to_right,rgba(115,56,56,0.94),rgba(139,69,69,0.85),rgba(139,69,69,0.75))] bg-clip-text text-transparent" aria-hidden="true">PERSONA</span>
+          AQUÍ <span id="tw-line1" aria-hidden="true">NO ERES UN</span><span
+            id="tw-cursor"
+            class="tw-cursor"
+            aria-hidden="true">|</span
+          >
+        </span>
+        <span
+          class="hero-h1-typo2 animate-hero animate-hero-delay-1 relative mb-2 inline-block pt-2 text-[clamp(2.5rem,8vw,4rem)] leading-[0.9] font-black tracking-tighter sm:text-7xl md:text-9xl lg:text-[clamp(6rem,10vw,12rem)]"
+        >
+          <span
+            id="tw-line2"
+            class="bg-[linear-gradient(to_right,rgba(115,56,56,0.94),rgba(139,69,69,0.85),rgba(139,69,69,0.75))] bg-clip-text text-transparent"
+            aria-hidden="true">EXPEDIENTE</span
+          >
         </span>
       </h1>
-      <span class="sr-only">Aquí eres una persona</span>
+      <span class="sr-only"
+        >Aquí no eres un expediente. Aquí eres una persona.</span
+      >
       <p
         class="animate-hero animate-hero-delay-2 text-normal leading-relaxed font-medium text-pretty text-primary mobl:text-lg sm:text-lg md:text-xl lg:text-2xl xl:text-3xl"
       >
@@ -57,3 +68,119 @@ import ArrowRightSvg from "../components/ArrowRightSvg.astro";
     </footer>
   </article>
 </section>
+
+<script>
+  (function () {
+    const TYPE_SPEED = 80;
+    const DELETE_SPEED = 50;
+    const PAUSE_DURATION = 3000;
+    const INITIAL_PAUSE = 2500;
+
+    const line1El = document.getElementById("tw-line1");
+    const line2El = document.getElementById("tw-line2");
+    const cursorEl = document.getElementById("tw-cursor");
+
+    if (!line1El || !line2El || !cursorEl) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reducedMotion) {
+      line1El.textContent = "NO ERES UN";
+      line2El.textContent = "EXPEDIENTE";
+      cursorEl.style.display = "none";
+      return;
+    }
+
+    const textA1 = "NO ERES UN";
+    const textA2 = "EXPEDIENTE";
+    const textB1 = "ERES UNA";
+    const textB2 = "PERSONA";
+
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+    line1El.textContent = textA1;
+    line2El.textContent = textA2;
+
+    function sleep(ms: number): Promise<void> {
+      return new Promise((resolve) => {
+        timeoutId = setTimeout(resolve, ms);
+      });
+    }
+
+    async function typeText(
+      el: HTMLElement,
+      text: string,
+      speed: number,
+    ): Promise<void> {
+      for (let i = 0; i < text.length; i++) {
+        if (document.visibilityState !== "visible") {
+          await new Promise<void>((resolve) => {
+            const handler = () => {
+              if (document.visibilityState === "visible") {
+                document.removeEventListener("visibilitychange", handler);
+                resolve();
+              }
+            };
+            document.addEventListener("visibilitychange", handler);
+          });
+        }
+        el.textContent += text[i];
+        await sleep(speed);
+      }
+    }
+
+    async function deleteText(
+      el: HTMLElement,
+      speed: number,
+    ): Promise<void> {
+      const text = el.textContent || "";
+      for (let i = text.length - 1; i >= 0; i--) {
+        if (document.visibilityState !== "visible") {
+          await new Promise<void>((resolve) => {
+            const handler = () => {
+              if (document.visibilityState === "visible") {
+                document.removeEventListener("visibilitychange", handler);
+                resolve();
+              }
+            };
+            document.addEventListener("visibilitychange", handler);
+          });
+        }
+        el.textContent = text.substring(0, i);
+        await sleep(speed);
+      }
+    }
+
+    async function runCycle() {
+      await sleep(INITIAL_PAUSE);
+
+      while (true) {
+        await deleteText(line2El as HTMLElement, DELETE_SPEED);
+        await deleteText(line1El as HTMLElement, DELETE_SPEED);
+
+        await typeText(line1El as HTMLElement, textB1, TYPE_SPEED);
+        await typeText(line2El as HTMLElement, textB2, TYPE_SPEED);
+
+        await sleep(PAUSE_DURATION);
+
+        await deleteText(line2El as HTMLElement, DELETE_SPEED);
+        await deleteText(line1El as HTMLElement, DELETE_SPEED);
+
+        await typeText(line1El as HTMLElement, textA1, TYPE_SPEED);
+        await typeText(line2El as HTMLElement, textA2, TYPE_SPEED);
+
+        await sleep(PAUSE_DURATION);
+      }
+    }
+
+    runCycle();
+
+    document.addEventListener("astro:before-swap", () => {
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+      }
+    });
+  })();
+</script>
