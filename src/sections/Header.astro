@@ -1,5 +1,6 @@
 ---
 import Logo from "../components/Logo.astro";
+import ArrowRightSvg from "../components/ArrowRightSvg.astro";
 ---
 
 <nav
@@ -58,38 +59,50 @@ import Logo from "../components/Logo.astro";
       <span class="hamburger-line"></span>
     </button>
   </div>
+</nav>
 
-  <div
-    id="mobile-menu"
-    class="mobile-menu"
-    aria-hidden="true"
-  >
-    <div class="flex h-full flex-col items-center justify-center gap-8 px-6">
-      <a
-        href="#services"
-        class="text-2xl font-semibold text-white transition-colors hover:text-white/80 sm:text-3xl"
-        >Trámites</a
-      >
-      <a
-        href="#process"
-        class="text-2xl font-semibold text-white transition-colors hover:text-white/80 sm:text-3xl"
-        >Cómo trabajamos</a
-      >
-      <a
-        href="#contact"
-        class="text-2xl font-semibold text-white transition-colors hover:text-white/80 sm:text-3xl"
-        >Contacto</a
-      >
+<div
+  id="mobile-menu"
+  class="mobile-menu"
+  aria-hidden="true"
+>
+  <div class="flex h-full flex-col">
+    <header class="flex items-center px-4 py-3 sm:px-6">
+      <a href="/" class="flex items-center" aria-label="Ataria Abogados — Inicio">
+        <Logo dark />
+      </a>
+    </header>
+    <div class="flex flex-1 flex-col justify-center px-6 pb-8">
+      <div class="flex flex-col">
+        <a
+          href="#services"
+          class="mobile-menu-link"
+          >Trámites
+          <ArrowRightSvg className="shrink-0" />
+        </a>
+        <a
+          href="#process"
+          class="mobile-menu-link"
+          >Cómo trabajamos
+          <ArrowRightSvg className="shrink-0" />
+        </a>
+        <a
+          href="#contact"
+          class="mobile-menu-link"
+          >Contacto
+          <ArrowRightSvg className="shrink-0" />
+        </a>
+      </div>
       <a
         target="_blank"
         rel="noopener noreferrer"
         href="https://wa.me/34613168703?text=Hola%20Ataria%20Abogados%2C%20estoy%20interesado%20en%20sus%20servicios."
-        class="mt-4 rounded-sm bg-white px-8 py-3 text-base font-semibold text-secondary transition-all duration-200 hover:bg-white/90 hover:shadow-lg"
+        class="mt-8 block rounded-sm bg-white px-8 py-3 text-center text-base font-semibold text-secondary transition-all duration-200 hover:bg-white/90 hover:shadow-lg"
         >Cuéntanos tu caso</a
       >
     </div>
   </div>
-</nav>
+</div>
 
 <script>
   function setupMobileMenu() {
@@ -129,29 +142,39 @@ import Logo from "../components/Logo.astro";
       btn!.setAttribute("aria-label", "Cerrar menú");
     }
 
-    function closeMenu() {
+    function closeMenu(immediateUnlock: boolean) {
       isOpen = false;
       menu!.classList.remove("is-open");
       menu!.setAttribute("aria-hidden", "true");
       btn!.setAttribute("aria-expanded", "false");
       btn!.setAttribute("aria-label", "Abrir menú");
-      const delay = reducedMotion ? 0 : 400;
-      setTimeout(() => {
-        if (!isOpen) unlockScroll();
-      }, delay);
+
+      if (immediateUnlock) {
+        window.scrollTo(0, savedScrollY);
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.width = "";
+      } else {
+        const delay = reducedMotion ? 0 : 400;
+        setTimeout(() => {
+          if (!isOpen) unlockScroll();
+        }, delay);
+      }
     }
 
     btn.addEventListener("click", () => {
-      if (isOpen) closeMenu();
+      if (isOpen) closeMenu(false);
       else openMenu();
     });
 
     menu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", closeMenu);
+      link.addEventListener("click", () => {
+        closeMenu(true);
+      });
     });
 
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && isOpen) closeMenu();
+      if (e.key === "Escape" && isOpen) closeMenu(false);
     });
   }
 
