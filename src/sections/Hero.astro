@@ -7,22 +7,33 @@ import ArrowRightSvg from "../components/ArrowRightSvg.astro";
     class="z-10 flex min-h-svh flex-col justify-start gap-y-10 py-24 lg:py-52"
   >
     <header>
-      <h1 class="flex flex-col">
+      <h1 class="relative flex flex-col">
         <span
-          class="hero-h1-typo animate-hero relative text-[1.75rem] leading-[1.1] font-bold tracking-tight text-primary sm:mb-4 sm:text-5xl md:text-7xl lg:text-8xl"
+          class="hero-h1-typo text-[1.75rem] leading-[1.1] font-bold tracking-tight text-primary sm:mb-4 sm:text-5xl md:text-7xl lg:text-8xl invisible"
+          aria-hidden="true">AQUÍ NO ERES UN</span
         >
-          AQUÍ <span id="tw-line1" aria-hidden="true"></span>
-        </span>
         <span
-          class="hero-h1-typo2 animate-hero animate-hero-delay-1 relative mb-2 inline-block pt-2 text-[clamp(2.5rem,8vw,4rem)] leading-[0.9] font-black tracking-tighter sm:text-7xl md:text-9xl lg:text-[clamp(6rem,10vw,12rem)]"
+          class="hero-h1-typo2 mb-2 pt-2 text-[clamp(2.5rem,8vw,4rem)] leading-[0.9] font-black tracking-tighter sm:text-7xl md:text-9xl lg:text-[clamp(6rem,10vw,12rem)] invisible"
+          aria-hidden="true">EXPEDIENTE</span
         >
+        <span class="absolute inset-0 flex flex-col">
           <span
-            id="tw-line2"
-            class="bg-[linear-gradient(to_right,rgba(115,56,56,0.94),rgba(139,69,69,0.85),rgba(139,69,69,0.75))] bg-clip-text text-transparent"
-            aria-hidden="true"></span><span
-            id="tw-cursor"
-            class="tw-cursor"
-            aria-hidden="true"></span>
+            class="hero-h1-typo animate-hero relative text-[1.75rem] leading-[1.1] font-bold tracking-tight text-primary sm:mb-4 sm:text-5xl md:text-7xl lg:text-8xl"
+          >
+            AQUÍ <span id="tw-line1" aria-hidden="true"></span>
+          </span>
+          <span
+            class="hero-h1-typo2 animate-hero animate-hero-delay-1 relative mb-2 inline-block pt-2 text-[clamp(2.5rem,8vw,4rem)] leading-[0.9] font-black tracking-tighter sm:text-7xl md:text-9xl lg:text-[clamp(6rem,10vw,12rem)]"
+          >
+            <span
+              id="tw-line2"
+              class="bg-[linear-gradient(to_right,rgba(115,56,56,0.94),rgba(139,69,69,0.85),rgba(139,69,69,0.75))] bg-clip-text text-transparent"
+              aria-hidden="true"></span><span
+              id="tw-cursor"
+              class="tw-cursor"
+              aria-hidden="true"></span
+            >
+          </span>
         </span>
       </h1>
       <span class="sr-only"
