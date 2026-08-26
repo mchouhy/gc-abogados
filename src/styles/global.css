@@ -63,8 +63,8 @@ html {
 
 .js-animated .animate-hero {
   opacity: 0;
-  transform: translateY(12px);
-  filter: blur(6px);
+  transform: translateY(15px);
+  filter: blur(15px);
 }
 
 .js-animated .animate-hero.is-visible {
@@ -96,7 +96,7 @@ html {
 .tw-char {
   display: inline;
   opacity: 0;
-  filter: blur(3px);
+  filter: blur(15px);
   transform: translateY(3px);
   transition:
     opacity 180ms ease-out,
