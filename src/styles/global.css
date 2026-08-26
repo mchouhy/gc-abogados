@@ -280,6 +280,10 @@ nav:has([aria-expanded="true"]) {
   backdrop-filter: none !important;
 }
 
+nav:has([aria-expanded="true"]) > div > a:first-child {
+  visibility: hidden;
+}
+
 nav:has([aria-expanded="true"]) .hamburger-btn {
   color: white !important;
 }
