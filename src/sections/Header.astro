@@ -40,7 +40,7 @@ import Logo from "../components/Logo.astro";
           target="_blank"
           rel="noopener noreferrer"
           href="https://wa.me/34613168703?text=Hola%20Ataria%20Abogados%2C%20estoy%20interesado%20en%20sus%20servicios."
-          class="rounded-full bg-[#8b4545] px-5 py-2 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#733838] hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8b4545]"
+          class="rounded-sm bg-[#8b4545] px-5 py-2 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#733838] hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8b4545]"
           >Cuéntanos tu caso</a
         >
       </li>
@@ -61,8 +61,10 @@ import Logo from "../components/Logo.astro";
         stroke-width="2"
         aria-hidden="true"
       >
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"
-        ></path>
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
     </button>
   </div>
@@ -71,7 +73,7 @@ import Logo from "../components/Logo.astro";
     id="mobile-menu"
     class="hidden border-t border-gray-200/60 bg-[#f8f9fa]/95 backdrop-blur-md md:hidden"
   >
-    <div class="space-y-1 px-4 pb-4 pt-2">
+    <div class="space-y-1 px-4 pt-2 pb-4">
       <a
         href="#services"
         class="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-secondary"
