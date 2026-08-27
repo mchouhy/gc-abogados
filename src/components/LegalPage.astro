@@ -1,0 +1,54 @@
+---
+import Header from "../sections/Header.astro";
+import Footer from "../sections/Footer.astro";
+import ArrowRightSvg from "./ArrowRightSvg.astro";
+
+interface Props {
+  title: string;
+  eyebrow?: string;
+  intro?: string;
+}
+
+const { title, eyebrow = "Información legal", intro = "" } = Astro.props;
+---
+
+<div class="flex min-h-svh flex-col bg-background">
+  <a href="#legal-content" class="skip-link">Saltar al contenido</a>
+  <Header />
+  <main id="legal-content" class="flex-1">
+    <section class="px-4 pt-16 pb-12 sm:mx-auto sm:max-w-4xl sm:pt-24 sm:pb-16 lg:px-6">
+      <a
+        href="/"
+        class="group mb-10 inline-flex items-center gap-1 text-sm font-medium text-secondary transition-colors hover:text-secondary-hover"
+      >
+        <ArrowRightSvg
+          className="rotate-180 transition-transform duration-200 group-hover:-translate-x-1"
+        />
+        Volver a inicio
+      </a>
+      <p
+        class="text-sm font-semibold tracking-widest text-secondary sm:text-base"
+      >
+        {eyebrow}
+      </p>
+      <h1
+        class="mt-2 text-3xl font-bold tracking-tight text-primary sm:text-4xl md:text-5xl"
+      >
+        {title}
+      </h1>
+      {intro && (
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed font-light text-gray-700">
+          {intro}
+        </p>
+      )}
+    </section>
+    <section class="px-4 pb-24 sm:mx-auto sm:max-w-3xl sm:pb-32 sm:px-6 lg:px-8">
+      <div class="border-t border-gray-200 pt-10 sm:pt-12">
+        <div class="prose prose-lg max-w-none text-gray-700">
+          <slot />
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</div>

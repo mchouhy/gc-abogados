@@ -1,31 +1,23 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import LegalPage from "../components/LegalPage.astro";
 ---
 
 <Layout title="Política de Privacidad">
-  <main class="mx-auto max-w-3xl px-4 py-32 sm:px-6 lg:px-8">
-    <a
-      href="/"
-      class="mb-8 inline-flex items-center text-sm font-medium text-secondary hover:underline"
-    >
-      &larr; Volver a inicio
-    </a>
-    <h1 class="mb-8 text-3xl font-bold sm:text-4xl">Política de Privacidad</h1>
-    <div class="prose prose-lg max-w-none text-gray-700">
-      <p>TODO: Contenido de la política de privacidad.</p>
-      <p>
-        Esta política describe cómo Ataria Abogados recopila, utiliza y protege
-        la información personal de los usuarios de esta web.
-      </p>
-      <p>Se requieren los siguientes datos para completar este documento:</p>
-      <ul>
-        <li>Responsable del tratamiento</li>
-        <li>Finalidad del tratamiento</li>
-        <li>Base legal</li>
-        <li>Destinatarios de los datos</li>
-        <li>Derechos del interesado</li>
-        <li>Plazo de conservación</li>
-      </ul>
-    </div>
-  </main>
+  <LegalPage title="Política de Privacidad" eyebrow="Documento legal">
+    <p>TODO: Contenido de la política de privacidad.</p>
+    <p>
+      Esta política describe cómo Ataria Abogados recopila, utiliza y protege la
+      información personal de los usuarios de esta web.
+    </p>
+    <p>Se requieren los siguientes datos para completar este documento:</p>
+    <ul>
+      <li>Responsable del tratamiento</li>
+      <li>Finalidad del tratamiento</li>
+      <li>Base legal</li>
+      <li>Destinatarios de los datos</li>
+      <li>Derechos del interesado</li>
+      <li>Plazo de conservación</li>
+    </ul>
+  </LegalPage>
 </Layout>

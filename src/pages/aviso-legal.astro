@@ -1,27 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import LegalPage from "../components/LegalPage.astro";
 ---
 
 <Layout title="Aviso Legal">
-  <main class="mx-auto max-w-3xl px-4 py-32 sm:px-6 lg:px-8">
-    <a
-      href="/"
-      class="mb-8 inline-flex items-center text-sm font-medium text-secondary hover:underline"
-    >
-      &larr; Volver a inicio
-    </a>
-    <h1 class="mb-8 text-3xl font-bold sm:text-4xl">Aviso Legal</h1>
-    <div class="prose prose-lg max-w-none text-gray-700">
-      <p>TODO: Contenido del aviso legal.</p>
-      <p>Se requieren los siguientes datos:</p>
-      <ul>
-        <li>Razón social / nombre del despacho</li>
-        <li>CIF/NIF</li>
-        <li>Domicilio profesional</li>
-        <li>Datos de inscripción en el colegio de abogados</li>
-        <li> EMAIL de contacto</li>
-        <li>teléfono</li>
-      </ul>
-    </div>
-  </main>
+  <LegalPage title="Aviso Legal" eyebrow="Documento legal">
+    <p>TODO: Contenido del aviso legal.</p>
+    <p>Se requieren los siguientes datos:</p>
+    <ul>
+      <li>Razón social / nombre del despacho</li>
+      <li>CIF/NIF</li>
+      <li>Domicilio profesional</li>
+      <li>Datos de inscripción en el colegio de abogados</li>
+      <li>EMAIL de contacto</li>
+      <li>teléfono</li>
+    </ul>
+  </LegalPage>
 </Layout>
