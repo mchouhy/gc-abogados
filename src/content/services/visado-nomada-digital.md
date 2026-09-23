@@ -2,7 +2,7 @@
 title: "Visado Nómada Digital"
 description: "Vive y trabaja en España."
 price: "€400"
-priceDescription: "Incluye preparación completa + tasas."
+priceDescription: "Incluye preparación completa + presentación."
 category: "visados"
 icon: "world"
 ---
