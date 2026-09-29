@@ -1,7 +1,7 @@
 ---
 title: "Arraigo familiar"
 description: "Residencia para familiares de nacionales UE."
-price: "€350000"
+price: "€350"
 priceDescription: "Desde la solicitud hasta la resolución."
 category: "residencia"
 icon: "hand-shake"
